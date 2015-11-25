@@ -10,8 +10,8 @@ import {
  * Returns an action object to be used in signalling that a site has been set
  * as selected.
  *
- * @param  {Number}   siteId Site ID
- * @return {Function}        Action thunk
+ * @param  {Number} siteId Site ID
+ * @return {Object}        Action object
  */
 export function setSelectedSite( siteId ) {
 	return {
