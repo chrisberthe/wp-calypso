@@ -41,16 +41,15 @@ module.exports = React.createClass( {
 		upgradesActions.resetTransaction();
 	},
 
-	componentWillUpdate: function( nextProps ) {
-		if ( ! this.props.cart.hasLoadedFromServer && nextProps.cart.hasLoadedFromServer ) {
-			this.trackPageView();
-		}
-	},
-
-	componentDidUpdate: function() {
+	componentDidUpdate: function( prevProps ) {
 		var previousCart, nextCart;
 		if ( ! this.props.cart.hasLoadedFromServer ) {
 			return false;
+		}
+
+		if ( ! prevProps.cart.hasLoadedFromServer && this.props.cart.hasLoadedFromServer ) {
+			// if the cart hadn't loaded when this mounted, record the page view when it loads
+			this.trackPageView();
 		}
 
 		previousCart = this.state.previousCart;
